@@ -1,10 +1,9 @@
 'use strict';
 
 /* Services */
-
-//ngSanitize
 angular.module('myApp.services', []).factory('sharedModel', function($rootScope) {
-      var model = {name:{first:'', last:''}};
+      //var model = [{text:'item 1'}, {text:'item 2'}];
+      var model = [];
       var lastModel = angular.copy(model);
 
       //var socket = io.connect('http://localhost:8889/');

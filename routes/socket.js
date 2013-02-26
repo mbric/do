@@ -6,16 +6,24 @@ var model = {};
 var clients = [];
 
 module.exports = function (socket) {
-  //socket.emit('send:name', {
-  //  name: 'Bob'
-  //});
+  
+  function set(obj, path, value){
+    var lastObj = obj;
+    var property;
+    path.split('.').forEach(function(name){
+      if (name) {
+        lastObj = obj;
+        obj = obj[property=name];
+        if (!obj) {
+          lastObj[property] = obj = {};
+        }
+      }
+    });
+    lastObj[property] = value;
+  }
 
-  //setInterval(function () {
-  //  socket.emit('send:time', {
-  //    time: (new Date()).toString()
-  //  });
-  //}, 1000);
   clients.push(socket);
+
   // new client is here! 
   socket.on('channel', function(msg){
     console.log('message:');

@@ -9,7 +9,7 @@ function AppCtrl($scope, socket) {
 }
 
 function DiscussionCtrl($scope, sharedModel) {
-  $scope.comments = [{text:"task1"}, {text:"task2"}]
+  $scope.comments = sharedModel 
   $scope.addComment = function() {
     $scope.comments.push({text:$scope.commentText, done:false});
     $scope.commentText = '';
