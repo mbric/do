@@ -2,7 +2,8 @@
  * Serve content over a socket
  */
 
-var model = {};
+var commentModel = {};
+var taskModel = {};
 var clients = [];
 
 module.exports = function (socket) {
@@ -24,18 +25,37 @@ module.exports = function (socket) {
 
   clients.push(socket);
 
-  // new client is here! 
-  socket.on('channel', function(msg){
+  //listen to comments channel
+  socket.on('comments', function(msg){
     console.log('message:');
-    console.log(msg);
-    set(model, msg.path, msg.value);
+    console.log(msg)
+    set(commentModel, msg.path, msg.value);
     clients.forEach(function(otherClient){
       if (socket !== otherClient){
         console.log("emitting..");
-        otherClient.emit("channel", msg);
+        otherClient.emit("comments", msg);
+      }
+    });
+    console.log(msg);
+  //listen to tasks channel
+  }).on('tasks', function(msg){
+    console.log('message:');
+    console.log(msg)
+    set(taskModel, msg.path, msg.value);
+    clients.forEach(function(otherClient){
+      if (socket !== otherClient){
+        console.log("emitting..");
+        otherClient.emit("tasks", msg);
       }
     });
     console.log(msg);
   });
-  socket.emit("channel", {path:'', value:model});
+
+  // initialize channels
+  socket.emit("comments", {path:'', value:commentModel});
+  socket.emit("tasks", {path:'', value:taskModel});
+
+  //TODO 
+  // try taking advantage of paths
+  // socket.emit("channel", {path:'/tasks', value:taskModel});
 };

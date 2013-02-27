@@ -14,7 +14,6 @@ var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
 // Configuration
-
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');

@@ -8,8 +8,16 @@ function AppCtrl($scope, socket) {
   });
 }
 
-function DiscussionCtrl($scope, sharedModel) {
-  $scope.comments = sharedModel 
+function TaskCtrl($scope, sharedTaskModel) {
+  $scope.tasks = sharedTaskModel 
+  $scope.addTask = function() {
+    $scope.tasks.push({text:$scope.taskText, done:false});
+    $scope.taskText = '';
+  };
+}
+
+function DiscussionCtrl($scope, sharedCommentModel) {
+  $scope.comments = sharedCommentModel 
   $scope.addComment = function() {
     $scope.comments.push({text:$scope.commentText, done:false});
     $scope.commentText = '';
