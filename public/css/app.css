@@ -28,3 +28,13 @@
   content: "";
   padding: 0;
 }
+
+ul {
+    list-style: circle;
+}
+li {
+    margin-left: 20px;
+}
+
+
+.hidden {display: none;}

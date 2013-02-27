@@ -16,12 +16,23 @@ function TaskCtrl($scope, sharedTaskModel) {
   };
 }
 
-function DiscussionCtrl($scope, sharedCommentModel) {
-  $scope.comments = sharedCommentModel 
-  $scope.addComment = function() {
-    $scope.comments.push({text:$scope.commentText, done:false});
-    $scope.commentText = '';
+function TreeController($scope, sharedCommentModel) {
+  //$scope.test = sharedCommentModel
+  $scope.tree = sharedCommentModel
+  $scope.delete = function(data) {
+      data.nodes = [];
+      //data.nodes.clear();
   };
+  $scope.addDefault = function(data) {
+      $scope.tree.push({name: "Node", nodes: []})
+  };
+  $scope.add = function(data) {
+      var post = data.nodes.length + 1;
+      var newName = data.name + '-' + post;
+      data.nodes.push({name: newName,nodes: []});
+  };
+  //$scope.tree = [{name: "Node", nodes: []}];
+  //$scope.tree = [{name: "Node", nodes: [{name: "Node-X1", nodes: []}, {name: "Node-X2", nodes: []}]}, {name: "Node-X", nodes: [{name: "Node-X1", nodes: []}, {name: "Node-X2", nodes: []}]}];
 }
 
 function MyCtrl1($scope, socket) {

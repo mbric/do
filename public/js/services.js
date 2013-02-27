@@ -4,6 +4,7 @@
 angular.module('myApp.services', [])
   .factory('sharedCommentModel', function($rootScope) {
   var model = [];
+  //var model = [{name: "Node", nodes: [{name: "Node-X1", nodes: []}, {name: "Node-X2", nodes: []}]}, {name: "Node-X", nodes: [{name: "Node-X1", nodes: []}, {name: "Node-X2", nodes: []}]}];
   var lastModel = angular.copy(model);
 
   var socket = io.connect();
