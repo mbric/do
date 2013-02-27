@@ -1,13 +1,17 @@
 # Do 
-## Real-time Project Tracking
+Real-time Project Tracking
 
-### Running the app
+## Overview
+    
+This app in currently in its prototyping phase and is not yet usable for purposes other than demonstrating real-time Angluar.js model syncronization via Socket.io
+
+## Running the app
 
 Runs like a typical express app:
 
     node app.js
 
-### Directory Layout
+## Directory Layout
     
     app.js              --> app config
     package.json        --> for npm
