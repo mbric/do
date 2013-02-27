@@ -3,7 +3,7 @@ extends layout
 block body
   h1 Sharing multiple angular.js models over separate channels in a Socket.io Socket
   div(ng-controller='TaskCtrl')
-    h2 Syncing model over "tasks channel"
+    h2 Syncing model over "tasks" channel
     ul.tasks
       li(ng-repeat='task in tasks')
         p {{task.text}}
