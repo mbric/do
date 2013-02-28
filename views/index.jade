@@ -1,8 +1,9 @@
 extends layout
 
 block body
-  h1 Sharing multiple angular.js models over separate channels in a Socket.io Socket
-  div(ng-controller='TaskCtrl')
+  h1 Sharing angular.js models over web-socket
+  
+  div(ng-controller='TaskController')
     h2 Syncing model over "tasks" channel
     ul.tasks
       li(ng-repeat='task in tasks')
@@ -13,6 +14,7 @@ block body
       input(class='btn-primary', type='submit', value='add')
 
   div(ng-controller='TreeController', ng:model="tree")
+    h2 Syncing model over "comments" channel
     ul(ui:sortable)
       li(ng-repeat="data in tree", ng-include="'tree_item_renderer.html'")
     a(ng-click="addDefault()", href="#") +
@@ -23,8 +25,6 @@ block body
     button(ng-click="delete(data)", ng-show="data.nodes.length > 0") Delete nodes
     ul(ui:sortable, ng:model="data.nodes")
       li(ng-repeat="data in data.nodes", ng-include="'tree_item_renderer.html'")
-
-
 
   script(src='js/lib/angular/angular.js')
   script(src='/socket.io/socket.io.js')
