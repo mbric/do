@@ -6,7 +6,8 @@ block body
     h2 Syncing model over "tasks" channel
     ul.tasks
       li(ng-repeat='task in tasks')
-        p {{task.text}}
+        span {{task.text}} 
+        a(href='#', ng-click="deleteTask(task)") [remove]
     form(ng-submit="addTask()")
       input(type='text', ng-model='taskText', size='30', placeholder='add new task here')
       input(class='btn-primary', type='submit', value='add')

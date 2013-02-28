@@ -14,6 +14,12 @@ function TaskCtrl($scope, sharedTaskModel) {
     $scope.tasks.push({text:$scope.taskText, done:false});
     $scope.taskText = '';
   };
+  $scope.deleteTask = function(task) {
+    var i = $scope.tasks.indexOf(task);
+    if(i != -1) {
+      $scope.tasks.splice(i, 1);
+    }
+  };
 }
 
 function TreeController($scope, sharedCommentModel) {
