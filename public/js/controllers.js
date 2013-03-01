@@ -18,8 +18,12 @@ function TaskController($scope, sharedTaskModel) {
 
 function TreeController($scope, sharedCommentModel) {
   $scope.tree = sharedCommentModel
+  //$scope.tree = [{name: "Node", nodes: [{name: "Node-X1", nodes: []}, {name: "Node-X2", nodes: []}]}, {name: "Node-X", nodes: [{name: "Node-X1", nodes: []}, {name: "Node-X2", nodes: []}]}];
   $scope.delete = function(data) {
-      data.nodes = [];
+      angular.forEach(data.nodes, function(node){
+        node.name = ''
+      })
+      console.log($scope.tree)
   };
   $scope.addDefault = function(data) {
       $scope.tree.push({name: "Node", nodes: []})
@@ -28,5 +32,9 @@ function TreeController($scope, sharedCommentModel) {
       var post = data.nodes.length + 1;
       var newName = data.name + '-' + post;
       data.nodes.push({name: newName,nodes: []});
+  };
+  $scope.applyScope = function() {
+    $scope.$apply();
+    $scope.$digest();
   };
 }

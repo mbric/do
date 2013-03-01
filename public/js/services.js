@@ -4,22 +4,29 @@
 angular.module('myApp.services', [])
   .factory('sharedCommentModel', function($rootScope) {
   var model = [];
-  //var model = [{name: "Node", nodes: [{name: "Node-X1", nodes: []}, {name: "Node-X2", nodes: []}]}, {name: "Node-X", nodes: [{name: "Node-X1", nodes: []}, {name: "Node-X2", nodes: []}]}];
   var lastModel = angular.copy(model);
 
   var socket = io.connect();
 
   socket.on('comments', function(message){
+    //alert(message.path);
     set(model, message.path, message.value);
     set(lastModel, message.path, message.value);
     $rootScope.sharedCommentModel = model;
     $rootScope.$apply();
+    console.log("socket setting sharedCommentModel")
+    console.log(model)
   });
 
   $rootScope.$watch('sharedCommentModel', function() {
     syncObject('', model, lastModel, socket, "comments");
+    console.log("synced sharedCommentModel")
+    console.log(model)
+    $rootScope.$apply();
   }, true);
 
+  console.log("returning sharedCommentModel")
+  console.log(model)
   return model;
 }).factory('sharedTaskModel', function($rootScope) {
   var model = [];

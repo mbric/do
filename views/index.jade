@@ -2,7 +2,7 @@ extends layout
 
 block body
   h1 Sharing angular.js models over web-socket
-  
+
   div(ng-controller='TaskController')
     h2 Syncing model over "tasks" channel
     ul.tasks
@@ -18,6 +18,8 @@ block body
     ul(ui:sortable)
       li(ng-repeat="data in tree", ng-include="'tree_item_renderer.html'")
     a(ng-click="addDefault()", href="#") +
+    br
+    a(ng-click="applyScope()", href="#") apply
 
   script(type="text/ng-template", id="tree_item_renderer.html")
     {{data.name}}

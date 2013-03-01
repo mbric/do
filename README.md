@@ -40,3 +40,7 @@ Runs like a typical express app:
         partial1.jade
         partial2.jade
 
+ - DELETE NODES ng-show issue: sharedCommentModel not getting value until after render
+ - Sync issue when deleteing nodes
+   - does send socket update on deleted nodes, but set method doesn't seem to persist this server side
+
