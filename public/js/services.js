@@ -22,7 +22,6 @@ angular.module('myApp.services', [])
     syncObject('', model, lastModel, socket, "comments");
     console.log("synced sharedCommentModel")
     console.log(model)
-    $rootScope.$apply();
   }, true);
 
   console.log("returning sharedCommentModel")
